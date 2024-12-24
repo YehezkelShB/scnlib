@@ -912,9 +912,7 @@ SCN_GCC_POP
     }(x))
 #endif
 
-#define SCN_UNUSED(x)             \
-    static_cast<void>(sizeof(x)); \
-    [[maybe_unused]] (x)
+#define SCN_UNUSED(x) static_cast<void>(sizeof(x))
 
 // SCN_ASSERT
 #ifdef NDEBUG
