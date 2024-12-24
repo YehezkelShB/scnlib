@@ -6039,7 +6039,7 @@ constexpr bool all_types_builtin()
 template <typename CharT, typename... Args>
 constexpr scan_arg_store_kind determine_arg_store_kind()
 {
-    if (sizeof...(Args) > max_packed_args) {
+    if constexpr (sizeof...(Args) > max_packed_args) {
         return scan_arg_store_kind::unpacked;
     }
 #if !(SCN_CLANG && SCN_APPLE)
@@ -6707,7 +6707,7 @@ public:
         std::basic_string_view<CharT> format_str,
         int num_args,
         const arg_type* types,
-        type_identity<Source> source_tag,
+        type_identity<Source> /*source_tag*/,
         int next_arg_id = 0)
         : base(format_str, next_arg_id),
           m_num_args(num_args),
@@ -8615,7 +8615,7 @@ public:
 
     constexpr void check_args_exhausted()
     {
-        if (num_args == 0) {
+        if constexpr (num_args == 0) {
             return;
         }
         for (auto is_set : m_visited_args) {
