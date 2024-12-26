@@ -6792,7 +6792,7 @@ private:
 constexpr inline bool is_constant_evaluated(bool default_value = false) noexcept
 {
 #ifdef __cpp_lib_is_constant_evaluated
-    SCN_UNUSED(default_value);
+    (void)default_value;
     return std::is_constant_evaluated();
 #else
     return default_value;
